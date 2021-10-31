@@ -32,7 +32,7 @@
 
 ## end to end pipeline
 
-   Jenkinsfile.deploy.pipeline
+   Jenkinsfile.deploy.pipeline, the enviornment variable can be added in order to manage the deployment onto different environment on dev, uat, staging.
    
 
 ##  recommendation and improvement:
