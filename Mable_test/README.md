@@ -1,3 +1,4 @@
+##  EKS and RoR deployment:
 -- deploy the new EKS cluster through Terraform
 
     cd terraform_eks
@@ -31,7 +32,7 @@
 
 
 
-## some of recommendation about the improvement:
+##  recommendation and improvement:
 - store the credential and sensitive data (database username & password) in seperate key store
 - database url could be managed through variable depends on hte environment
 - Helm chart would be the best option to manage the deployment chart in K8s cluster
