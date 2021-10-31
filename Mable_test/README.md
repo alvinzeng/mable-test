@@ -19,16 +19,17 @@
      -f Dockerfile.rails .
 
 -- publish image to Docker Hub, this image will be using in Kubernertes deployment
-   docker login
-   docker push $DOCKER_USERNAME/mable-rail:latest
+   
+    docker login
+    docker push $DOCKER_USERNAME/mable-rail:latest
 
 -- create Kube deployment
 
-   kubectl apply -f ./deployment.yaml
+    kubectl apply -f ./deployment.yaml
 
 -- create Kube service
 
-   kubectl apply -f ./service.yaml
+    kubectl apply -f ./service.yaml
 
 ## end to end pipeline
 
