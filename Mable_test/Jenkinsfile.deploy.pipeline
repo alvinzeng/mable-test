@@ -22,6 +22,12 @@ pipeline {
         sh '''
             set +x
             dockerImage = docker.build imagename
+            
+             docker build -t $dockerImage
+                 --build-arg USER_ID=       
+                 --build-arg USER_ID=$(id -u)  \
+                 --build-arg GROUP_ID=$(id -g) \
+                 -f Dockerfile.rails .
            
         '''
       }
