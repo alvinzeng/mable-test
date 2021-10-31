@@ -1,0 +1,70 @@
+## example only, the code is not full tested.
+
+pipeline {
+
+    environment {
+    imagename = "mable/Rorapp"
+    registryCredential = 'alvinzeng-dockerhub'
+    dockerImage = ''
+    }
+
+  agent any
+  stages {
+    stage('Cloning Git') {
+      steps {
+        sh '''
+           git([url: 'https://github.com/xxxx.git', branch: 'main', credentialsId: 'github-user-token'])
+        '''
+      }
+    }
+    stage('Building image') {
+      steps {
+        sh '''
+            set +x
+            dockerImage = docker.build imagename
+           
+        '''
+      }
+    }
+    stage('Deploy Image') {
+      steps {
+        sh '''
+            set +x
+            echo "Pushing image to DockerHub ...."
+            docker.withRegistry( '', registryCredential ) {
+            dockerImage.push("$BUILD_NUMBER")
+            dockerImage.push('latest')
+    
+        '''
+      }
+    }
+    stage('Remove Unused docker Image from local') {
+      steps {
+        sh '''
+            set +x
+            echo "remove image from local ...."
+
+            docker rmi $imagename:$Build_Number
+    
+        '''
+      }
+    }
+    stage('kubectl') {
+      steps {
+
+          withCredentials([usernamePassword(credentialsId: 'ddcba826-ef01-4b18-856f-ffdc4eb27c1f', usernameVariable: 'my-user', passwordVariable: 'PASSWORD')]) {
+           
+        sh '''
+            set +x
+            echo "kubectl deployment ...."
+            kubectl apply -f deployment.yaml
+        '''
+
+          }
+      }
+    }
+    
+    }
+  }
+}
+
