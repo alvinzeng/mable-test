@@ -30,7 +30,10 @@
 
    kubectl apply -f ./service.yaml
 
+## end to end pipeline
 
+   Jenkinsfile.deploy.pipeline
+   
 
 ##  recommendation and improvement:
 - store the credential and sensitive data (database username & password) in seperate key store
