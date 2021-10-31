@@ -12,7 +12,7 @@
 
 -- build the RoR image in docker
 
-  docker build -t mable-rail 
+     docker build -t mable-rail 
      --build-arg USER_ID=       
      --build-arg USER_ID=$(id -u)  \
      --build-arg GROUP_ID=$(id -g) \
