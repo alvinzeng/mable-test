@@ -46,3 +46,4 @@ Assumption:
 
 - the docker image above is not real published, just put it as a dummy example
 - https & SSL is not implemented
+- The Jenkins pipeline is not fully tested in real env, it's just showing as an example how to integrate all the steps together
